@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1 class="my-3">SignUp</h1>
+          <h6 class="my-1">Kayıtlı değil misin? Kayıt Ol.</h6>
+        </div>
+        <form [formGroup]= "signUpForm" (ngSubmit)= "signUpSubmit()">
+          <div class="my-3 mx-3">
+            <label for="fullName" class="form-label">Ad Soyad</label>
+            <input formControlName="fullName" type="text" class="form-control" id="fullName1" placeholder="Ad Soyad"/>
+            <small class="text-danger" *ngIf= "signUpForm.controls['fullName'].touched && signUpForm.hasError('required','fullName')" >*Ad Soyad zorunludur.</small>
+          </div>
+          <div class="my-3 mx-3">
+            <label for="mobile" class="form-label">Telefon No</label>
+            <input formControlName="mobile" type="number" class="form-control" id="mobile1" placeholder="Telefon Numarası" />
+            <small class="text-danger" *ngIf= "signUpForm.controls['mobile'].touched && signUpForm.hasError('required','mobile')" >*Telefon numarası zorunludur.</small>
+          </div>
+          <div class="my-3 mx-3">
+            <label for="email" class="form-label">E-posta</label>
+            <input formControlName="email" type="email" class="form-control" id="email1" placeholder="E-posta" />
+            <small class="text-danger" *ngIf= "signUpForm.controls['email'].touched && signUpForm.hasError('required','email')" >*E-posta zorunludur.</small>
+          </div>
+          <div class="my-3 mx-3">
+            <label for="password" class="form-label">Şifre</label>
+            <input formControlName="password" type="password" class="form-control" id="password1" placeholder="Şifre" />
+            <small class="text-danger" *ngIf= "signUpForm.controls['password'].touched && signUpForm.hasError('required','password')" >*Şifre zorunludur.</small>
+          </div>
+          <div class="d-grid col-3 mx-auto my-3">
+            <button [disabled]="signUpForm.invalid" type="submit" class="btn btn-primary">Kayıt Ol</button>
+          </div>
+        </form>
+        <a routerLink="/login">Giriş için <strong>tıklayınız!</strong></a>
+      </div>
+    </div>
+  </div>
+</div>

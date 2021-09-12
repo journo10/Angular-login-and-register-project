@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1 class="my-3">Giriş Yap</h1>
+          <h6 class="my-1">E-posta ve şifre giriniz.</h6>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+          <div class="my-3 mx-3">
+            <label for="email" class="form-label">E-posta</label>
+            <input formControlName="email" type="email" class="form-control" id="email1" placeholder="E-posta" />
+            <small class="text-danger" *ngIf= "loginForm.controls['email'].touched && loginForm.hasError('required','email')" >*E-posta zorunludur.</small>
+          </div>
+          <div class="my-3 mx-3">
+            <label for="password" class="form-label">Şifre</label>
+            <input formControlName="password" type="password" class="form-control" id="password1" placeholder="Şifre" />
+            <small class="text-danger" *ngIf= "loginForm.controls['password'].touched && loginForm.hasError('required','password')">*Şifre zorunludur.</small>
+          </div>
+          <div class="d-grid col-3 mx-auto my-3">
+            <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Giriş Yap</button>
+          </div>
+        </form>
+        <a routerLink="/signup">Kaydolmak için <strong>tıklayınız!</strong> </a>
+      </div>
+    </div>
+  </div>
+</div>

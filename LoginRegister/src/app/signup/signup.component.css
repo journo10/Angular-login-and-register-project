@@ -1,0 +1,29 @@
+.card {
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+  position: relative;
+  top: 5%;
+  left: 50%;
+  background: linear-gradient(180deg, #04416da9, #0f3670);
+
+
+}
+
+h1,
+label {
+  color: #FFFFFF;
+}
+
+h6,
+strong {
+  color: #330101;
+}
+
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

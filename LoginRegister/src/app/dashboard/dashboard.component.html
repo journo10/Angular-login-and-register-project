@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+  <div class="container">
+    <a class="navbar-brand">Kişi App</a>
+    <div class="d-flex">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item ">
+        <button (click)= " clickAddDashboard()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Kişi Ekle
+          </button>
+          <button routerLink="/login" class="btn btn-success mx-3" >Çıkış Yap</button>
+      </li>
+    </ul>
+</div>
+  </div>
+</nav>
+<div class="container mt-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Adı</th>
+        <th scope="col">Soyadı</th>
+        <th scope="col">E-Posta</th>
+        <th scope="col">Telefon</th>
+        <th scope="col">Maaş</th>
+        <th scope="col">Durum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dashboardData">
+        <th scope="row">{{item.id}}</th>
+        <th scope="row">{{item.firstName}}</th>
+        <th scope="row">{{item.lastName}}</th>
+        <th scope="row">{{item.email}}</th>
+        <th scope="row">{{item.mobile}}</th>
+        <th scope="row">{{item.salary}}</th>
+        <th scope="row">
+          <button (click)="onEdit(item)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-warning">Düzenle</button>
+          <button (click)="dashboardDetailsDelete(item)" class="btn btn-danger ms-3">Sil</button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Kişi Detayları</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="FormV">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Adı</label>
+                  <input formControlName="firstName" name="firstName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <small *ngIf="FormV.get('firstName').invalid && FormV.get('firstName').touched">*Bu alan zorunludur.</small>
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Soyadı</label>
+                  <input formControlName="lastName" name="lastName" type="text" class="form-control" id="exampleInputPassword1">
+                  <small *ngIf="FormV.get('lastName').invalid && FormV.get('lastName').touched">*Bu alan zorunludur.</small>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">E-Posta</label>
+                    <input formControlName="email" name="email" type="email" email class="form-control" id="exampleInputPassword1">
+                    <small *ngIf="FormV.get('email').invalid && FormV.get('email').touched">*Bu alan zorunludur.</small>
+                    <p *ngIf="FormV.get('email').errors.pattern" >*E-posta adresini doğru giriniz.</p>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Telefon No</label>
+                    <input formControlName="mobile" name="mobile" type="tel" class="form-control" id="exampleInputPassword1">
+                    <small *ngIf="FormV.get('mobile').invalid && FormV.get('mobile').touched">*Bu alan zorunludur.</small>
+                    <p *ngIf="FormV.get('mobile').errors.pattern" >*Sadece rakam giriniz.</p>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Maaş</label>
+                    <input formControlName="salary" name="salary" type="text" class="form-control" id="exampleInputPassword1">
+                    <small *ngIf="FormV.get('salary').invalid && FormV.get('salary').touched">*Bu alan zorunludur.</small>
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="button1" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button  *ngIf="showAdd" (click)="dashboardDetailsPost()" type="button" class="btn btn-success">Ekle</button>
+          <button  *ngIf="showUpdate" (click)="dashboardDetailsUpdate()" type="button" class="btn btn-primary">Güncelle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
